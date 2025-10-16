@@ -6,6 +6,7 @@ Actual:   36 minutes
 
 
 def main():
+    """Get input as email and output name with corresponding email."""
     email_to_name = {}
     email = input("Email: ")
     while email != "":
@@ -21,6 +22,7 @@ def main():
 
 
 def get_name_from_email(email: str) -> str:
+    """Convert email to name."""
     parts = email.split("@")[0].split(".")
     name = " ".join(parts).title()
     return name
