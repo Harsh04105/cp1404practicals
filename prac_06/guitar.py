@@ -3,6 +3,8 @@ Guitar
 Estimate: 10 minutes
 Actual:   5 minutes
 """
+CURRENT_YEAR = 2025
+VINTAGE_AGE = 50
 
 
 class Guitar:
@@ -15,8 +17,7 @@ class Guitar:
         return f"{self.name} ({self.year}) : ${self.cost:,.2f}"
 
     def get_age(self):
-        current_year = int(input("Year: "))
-        return current_year - self.year
+        return CURRENT_YEAR - self.year
 
     def is_vintage(self):
-            return self.get_age() >= 50
+        return self.get_age() >= VINTAGE_AGE
