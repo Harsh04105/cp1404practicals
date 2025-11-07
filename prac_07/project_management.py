@@ -52,8 +52,40 @@ def load_projects(filename):
         in_file.readline()  # skip header
         for line in in_file:
             name, start_date, priority, cost, percent_complete = line.strip().split("\t")
-            projects.append(Project(name, int(start_date), int(priority), float(cost), float(percent_complete)))
+            start_date = datetime.datetime.strptime(start_date, "%d/%m/%Y").date()
+            projects.append(Project(name, start_date, int(priority), float(cost), float(percent_complete)))
     return projects
+
+
+def save_projects(projects, filename):
+    """Write projects to a file."""
+    with open(filename, "w", encoding="utf-8") as out_file:
+        out_file.write(HEADER)
+        for project in projects:
+            project.cost = str(project.cost)
+            project.percent_complete = str(project.percent_complete)
+    print(project.save_format(), file=out_file)
+    print(f"Saved {len(projects)} projects to {FILENAME}")
+
+
+def display_projects(projects):
+    """Display incomplete then completed projects sorted by priority."""
+    incomplete_projects = [project for project in projects if not project.is_complete()]
+    completed_projects = [project for project in projects if project.is_complete()]
+
+    incomplete_projects.sort()
+    completed_projects.sort()
+
+    print("Incomplete projects:")
+    for project in incomplete_projects:
+        print(f" {project}")
+
+    print("Completed projects:")
+    for project in completed_projects:
+        print(f" {project}")
+
+
+
 
 
 main()
