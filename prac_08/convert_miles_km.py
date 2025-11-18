@@ -6,7 +6,7 @@ MILES_TO_KM = 1.60934
 
 
 class ConvertMiles(App):
-    """Conversion app."""
+    """Miles-to-kilometres converter app."""
     message = StringProperty()
 
     def build(self):
